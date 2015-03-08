@@ -31,8 +31,10 @@ y=`xwininfo -id $window_id | awk '/Absolute upper-left Y:/ { print $4 }'`
 # Subtract any offsets caused by panels or window decorations
 x_offset=`xwininfo -id $window_id | awk '/Relative upper-left X:/ { print $4 }'`
 y_offset=`xwininfo -id $window_id | awk '/Relative upper-left Y:/ { print $4 }'`
-x=`expr $x - $x_offset`
-y=`expr $y - $y_offset`
+
+# Since xfce 4.12, it is not requied to substract the decoration offset
+#x=`expr $x - $x_offset`
+#y=`expr $y - $y_offset`
 
 # Compute new X position
 new_x=`expr $x - $display_width`
